@@ -28,6 +28,7 @@ use Plenty\Plugin\ConfigRepository;
 use \Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Modules\Comment\Contracts\CommentRepositoryContract;
 use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
+use Plenty\Modules\Account\Address\Contracts\AddressRepositoryContract;
 use Plenty\Modules\Frontend\Session\Storage\Contracts\FrontendSessionStorageFactoryContract;
 use Novalnet\Constants\NovalnetConstants;
 use Novalnet\Services\TransactionService;
@@ -94,6 +95,11 @@ class PaymentHelper
      * @var transaction
      */
     private $transaction;
+    
+    /**
+     * @var AddressRepositoryContract
+     */
+    private $addressRepository;
 
     /**
      * Constructor.
@@ -105,6 +111,7 @@ class PaymentHelper
      * @param CommentRepositoryContract $orderComment
      * @param ConfigRepository $configRepository
      * @param FrontendSessionStorageFactoryContract $sessionStorage
+     * @param AddressRepositoryContract $addressRepository
      * @param TransactionService $tranactionService
      * @param CountryRepositoryContract $countryRepository
      */
@@ -115,6 +122,7 @@ class PaymentHelper
                                 CommentRepositoryContract $orderComment,
                                 ConfigRepository $configRepository,
                                 FrontendSessionStorageFactoryContract $sessionStorage,
+                                AddressRepositoryContract $addressRepository,
                                 TransactionService $tranactionService,
                                 CountryRepositoryContract $countryRepository
                               )
@@ -126,6 +134,7 @@ class PaymentHelper
         $this->orderComment                   = $orderComment;      
         $this->config                         = $configRepository;
         $this->sessionStorage                 = $sessionStorage;
+        $this->addressRepository              = $addressRepository;
         $this->transaction                    = $tranactionService;
         $this->countryRepository              = $countryRepository;
     }
