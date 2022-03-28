@@ -755,4 +755,23 @@ class PaymentHelper
             $this->getLogger(__METHOD__)->error('Novalnet::getCustomerBillingOrShippingAddress', $e);
         }
     }
+    
+    /**
+      * Get payment key from the shop order Id
+      *
+      * @param int $orderId
+      * @return string|bool
+      */
+    public function getOrderPaymentKey($orderId)
+    {
+        $orderObj = $this->getOrderObject($orderId);
+        foreach($orderObj->properties as $property)
+        {
+            if($property->typeId == 3)
+            {
+                $mopId = $property->value;
+            }
+        }
+        return $this->getPaymentKeyByMop($mopId);
+    }
 }
