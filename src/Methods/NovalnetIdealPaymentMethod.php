@@ -160,10 +160,10 @@ class NovalnetIdealPaymentMethod extends PaymentMethodService
     public function isSwitchableFrom($orderId = null): bool
     {
     if($orderId > 0) {
-        $sendPaymentRequest = $this->paymentService->checkPaymentRequestSend($orderId);
+        $paymentKey = $this->paymentHelper->getOrderPaymentKey($orderId);
         $sendPaymentRequest = $this->paymentService->checkPaymentRequestSend($orderId);
         $tid_status = $this->paymentHelper->getNovalnetTxStatus($orderId);
-        if((!empty($tid_status) && !in_array($tid_status, [75, 85, 86, 90, 91, 98, 99, 100, 103])) || ($sendPaymentRequest == true && empty($tid_status)) ) {
+        if( strpos($paymentKey, 'NOVALNET') !== false && ((!empty($tid_status) && !in_array($tid_status, [75, 85, 86, 90, 91, 98, 99, 100, 103])) || ($sendPaymentRequest == true && empty($tid_status))) ) {
             return true;
         }
         }
