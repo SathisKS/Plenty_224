@@ -158,7 +158,7 @@ class PaymentController extends Controller
         $basket = $this->basketRepository->load();  
         $billingAddressId = !empty($basket->customerInvoiceAddressId) ? $basket->customerInvoiceAddressId : $requestData['nn_billing_addressid'];
         $shippingAddressId = !empty($basket->customerShippingAddressId) ? $basket->customerShippingAddressId : $requestData['nn_shipping_addressid'];
-        $address = $this->addressRepository->findAddressById($billingAddressId);
+        $address = $this->paymentHelper->getCustomerBillingOrShippingAddress((int) $billingAddressId);
         foreach ($address->options as $option) {
             if ($option->typeId == 9) {
             $dob = $option->value;
