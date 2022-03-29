@@ -448,10 +448,10 @@ class PaymentService
     public function getCreditCardAuthenticationCallData(Basket $basket, $paymentKey, $orderAmount = 0, $billingInvoiceAddrId = 0, $shippingInvoiceAddrId = 0) {
         $billingAddressId = !empty($basket->customerInvoiceAddressId) ? $basket->customerInvoiceAddressId : $billingInvoiceAddrId;
         $shippingAddressId = !empty($basket->customerShippingAddressId) ? $basket->customerShippingAddressId : $shippingInvoiceAddrId;
-        $billingAddress = $this->addressRepository->findAddressById($billingAddressId);
+        $billingAddress = $this->paymentHelper->getCustomerBillingOrShippingAddress((int) $billingAddressId);
         $shippingAddress = $billingAddress;
         if(!empty($shippingAddressId)){
-            $shippingAddress = $this->addressRepository->findAddressById($shippingAddressId);
+            $shippingAddress = $this->paymentHelper->getCustomerBillingOrShippingAddress((int) $shippingAddressId);
         }
         $customerName = $this->getCustomerName($billingAddress);
         
