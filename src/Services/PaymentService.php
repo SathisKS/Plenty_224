@@ -277,10 +277,10 @@ class PaymentService
         
         $billingAddressId = !empty($basket->customerInvoiceAddressId) ? $basket->customerInvoiceAddressId : $billingInvoiceAddrId;
         $shippingAddressId = !empty($basket->customerShippingAddressId) ? $basket->customerShippingAddressId : $shippingInvoiceAddrId;
-        $address = $this->addressRepository->findAddressById($billingAddressId);
+        $address = $this->paymentHelper->getCustomerBillingOrShippingAddress((int) $billingAddressId);
         $shippingAddress = $address;
         if(!empty($shippingAddressId)){
-            $shippingAddress = $this->addressRepository->findAddressById($shippingAddressId);
+            $shippingAddress = $this->paymentHelper->getCustomerBillingOrShippingAddress((int) $shippingAddressId);
         }
         
         $customerName = $this->getCustomerName($address);
