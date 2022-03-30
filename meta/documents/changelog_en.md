@@ -1,5 +1,12 @@
 # Release Notes for Novalnet
 
+## v2.2.4 (2022-03-30)
+
+### Enhanced
+
+- Orders initially placed with default payment methods, reinitiate payment option will be displayed during the change payment method process
+- Code optimization in the confirmation page to avoid the 404 error
+
 ## v2.2.3 (2022-02-18)
 
 ### Fix
