@@ -1,5 +1,12 @@
 # Informationen zum Novalnet Release
 
+## v2.2.4 (2022-03-30)
+
+### Verbessert
+
+- Bei Bestellungen, für die ursprünglich Standard-Zahlungsmethoden ausgewählt wurden, wird während des Prozesses zum Ändern der Zahlungsmethode die Option "Zahlung neu einleiten" angezeigt
+- Code-Optimierung auf der Bestätigungsseite, um 404-Fehler zu vermeiden
+
 ## v2.2.3 (2022-02-18)
 
 ### Behoben
